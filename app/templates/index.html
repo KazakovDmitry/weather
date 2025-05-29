@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Прогноз погоды</h1>
+    {% if last_city %}
+        <p>Последний просмотренный город: <a href="#" onclick="document.getElementById('city_name').value='{{ last_city }}'; document.forms[0].submit();">{{ last_city }}</a></p>
+    {% endif %}
+    
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.city_name.label }}<br>
+            {{ form.city_name(size=32) }}
+            <div id="suggestions" class="autocomplete-suggestions"></div>
+        </div>
+        <div>{{ form.submit() }}</div>
+    </form>
+    
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+{% endblock %}

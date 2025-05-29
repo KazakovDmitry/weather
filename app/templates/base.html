@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Прогноз погоды</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#city_name').on('input', function() {
+                const query = $(this).val();
+                if (query.length >= 2) {
+                    $.get('/api/cities', {q: query}, function(data) {
+                        let suggestions = $('#suggestions');
+                        suggestions.empty();
+                        data.forEach(function(city) {
+                            suggestions.append('<div class="autocomplete-suggestion">' + city + '</div>');
+                        });
+                        $('.autocomplete-suggestion').click(function() {
+                            $('#city_name').val($(this).text().split(',')[0]);
+                            suggestions.empty();
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

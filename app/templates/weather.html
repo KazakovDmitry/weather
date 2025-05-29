@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Погода в {{ city_name }}</h1>
+    
+    <div class="weather-container">
+        {% if weather.current_weather %}
+        <div class="weather-info">
+            <div class="weather-icon">🌤️</div>
+            <div>
+                <h2>Сейчас</h2>
+                <p>Температура: {{ weather.current_weather.temperature }}°C</p>
+                <p>Скорость ветра: {{ weather.current_weather.windspeed }} м/с</p>
+            </div>
+        </div>
+        {% endif %}
+        
+        <h3>Прогноз на ближайшие часы:</h3>
+        <div class="hourly-forecast">
+            {% for i in range(weather.hourly.time|length) %}
+                {% if i < 12 %}  {# Показываем только 12 следующих часов #}
+                <div class="hourly-item">
+                    <p>Время: {{ weather.hourly.time[i]|format_time }}</p>
+                    <p>Температура: {{ weather.hourly.temperature_2m[i]|format_temperature }}</p>
+                    <p>Влажность: {{ weather.hourly.relativehumidity_2m[i] }}%</p>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <p><a href="{{ url_for('main.index') }}">Назад к поиску</a></p>
+{% endblock %}

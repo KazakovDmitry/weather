@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.weather-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.weather-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.weather-icon {
+    font-size: 2em;
+    margin-right: 15px;
+}
+
+.autocomplete-suggestions {
+    border: 1px solid #ddd;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.autocomplete-suggestion {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.autocomplete-suggestion:hover {
+    background-color: #f0f0f0;
+}
