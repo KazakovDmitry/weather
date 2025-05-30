@@ -3,7 +3,11 @@
 {% block content %}
     <h1>Прогноз погоды</h1>
     {% if last_city %}
-        <p>Последний просмотренный город: <a href="#" onclick="document.getElementById('city_name').value='{{ last_city }}'; document.forms[0].submit();">{{ last_city }}</a></p>
+        <p>Последний просмотренный город:
+           <a href="#" onclick="document.getElementById('city_name').value='{{ last_city }}'; document.forms[0].submit();">
+              {{ last_city }}
+           </a>
+        </p>
     {% endif %}
     
     <form method="POST">
