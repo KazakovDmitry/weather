@@ -1,7 +1,7 @@
-from flask import render_template, request, current_app, Blueprint, make_response
+from flask import render_template, request, current_app, Blueprint, make_response, jsonify
 from datetime import datetime
 from app.forms import CityForm
-from app.services import get_city_coordinates, get_weather_by_coords
+from app.services import get_city_coordinates, get_weather_by_coords, get_city_suggestions
 from app.models import CitySearch, db
 
 bp = Blueprint('main', __name__)
@@ -51,3 +51,13 @@ def index():
         return response
 
     return render_template('index.html', form=form, last_city=last_city)
+
+
+@bp.route('/api/cities')
+def city_suggestions():
+    query = request.args.get('q', '')
+    if len(query) < 2:
+        return jsonify([])
+
+    suggestions = get_city_suggestions(query)
+    return jsonify(suggestions)
