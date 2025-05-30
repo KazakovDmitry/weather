@@ -18,7 +18,11 @@
 3. Откройте http://localhost:5000
 
 ### Docker
-1. Создайте .env файл с API ключами
+1. Создайте .env файл с API ключами:
+GEONAMES_USERNAME=dimakameya
+FLASK_APP=app
+DATABASE_URL=sqlite:///weather.db
+
 2. Запустите: `docker-compose up`
 3. Откройте http://localhost:5000
 

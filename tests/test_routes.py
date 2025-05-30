@@ -32,3 +32,9 @@ def test_api_cities_handles_error(client, mock_geonames):
     mock_geonames.side_effect = Exception("API error")
     response = client.get("/api/cities?q=Mos")
     assert response.json == []
+
+
+def test_index_post_invalid_form(client):
+    response = client.post('/', data={'city_name': ''})
+    assert b'This field is required' in response.data
+

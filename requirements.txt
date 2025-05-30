@@ -8,3 +8,5 @@ pytest==8.0.0
 SQLAlchemy==2.0.25
 Werkzeug==3.1.0
 Flask-Migrate==4.0.5
+cachetools==5.3.2
+python-dotenv==1.0.0
